@@ -204,15 +204,14 @@ public final class ScheduleTools {
 		VehicleType vehicleType = vf.createVehicleType(vTypeId);
 		vehicleType.setLength(defaultValues.length);
 		vehicleType.setWidth(defaultValues.width);
-		vehicleType.setAccessTime(defaultValues.accessTime);
-		vehicleType.setEgressTime(defaultValues.egressTime);
-		vehicleType.setDoorOperationMode(defaultValues.doorOperation);
+		VehicleUtils.setAccessTime(vehicleType, defaultValues.accessTime);
+		VehicleUtils.setEgressTime(vehicleType, defaultValues.egressTime);
+		VehicleUtils.setDoorOperationMode(vehicleType, defaultValues.doorOperation);
 		vehicleType.setPcuEquivalents(defaultValues.pcuEquivalents);
 
-		VehicleCapacity capacity = vf.createVehicleCapacity();
+		VehicleCapacity capacity = vehicleType.getCapacity();
 		capacity.setSeats(defaultValues.capacitySeats);
 		capacity.setStandingRoom(defaultValues.capacityStanding);
-		vehicleType.setCapacity(capacity);
 
 		return vehicleType;
 	}
@@ -222,7 +221,7 @@ public final class ScheduleTools {
 	 */
 	public static Vehicles readVehicles(String vehiclesFile) {
 		Vehicles vehicles = createVehiclesContainer();
-		new VehicleReaderV1(vehicles).readFile(vehiclesFile);
+		new MatsimVehicleReader(vehicles).readFile(vehiclesFile);
 		return vehicles;
 	}
 
@@ -518,7 +517,7 @@ public final class ScheduleTools {
 	 */
 	public static void writeVehicles(Vehicles vehicles, String filePath) {
 		log.info("Writing vehicles to file " + filePath);
-		new VehicleWriterV1(vehicles).writeFile(filePath);
+		new MatsimVehicleWriter(vehicles).writeFile(filePath);
 	}
 
 	/**

@@ -19,13 +19,18 @@
 
     <repositories>
         <repository>
+            <id>central2</id>
+            <name>check central first to avoid a lot of not found warnings</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
             <id>matsim</id>
-            <url>http://dl.bintray.com/matsim/matsim</url>
+            <url>https://dl.bintray.com/matsim/matsim</url>
         </repository>
         <repository>
             <id>ojo-snapshots</id>
             <name>MATSim snapshot repository</name>
-            <url>http://oss.jfrog.org/libs-snapshot</url>
+            <url>https://oss.jfrog.org/libs-snapshot</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>

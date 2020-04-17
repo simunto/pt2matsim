@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.matsim</groupId>
     <artifactId>pt2matsim</artifactId>
-    <version>19.11-m12-2020w01</version>
+    <version>19.11-m12-2020w15</version>
 
     <name>PT2MATSim</name>
     <description>Public Transport to MATSim</description>
@@ -42,7 +42,7 @@
     </repositories>
 
 	<properties>
-		<geotools.version>20.2</geotools.version>
+		<geotools.version>21.5</geotools.version>
 	</properties>
 
     <dependencies>
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.matsim</groupId>
             <artifactId>matsim</artifactId>
-            <version>12.0-2020w01-SNAPSHOT</version>
+            <version>12.0-2020w15-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

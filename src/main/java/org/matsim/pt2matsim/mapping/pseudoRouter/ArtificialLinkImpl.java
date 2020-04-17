@@ -38,8 +38,8 @@ public class ArtificialLinkImpl implements ArtificialLink {
 	private final Id<Node> fromNodeId;
 	private final Id<Node> toNodeId;
 	private final int hash;
-	private final Node fromNode;
-	private final Node toNode;
+	private Node fromNode;
+	private Node toNode;
 	private double freespeed;
 	private double linkLength;
 	private double numberOfLanes;
@@ -94,7 +94,7 @@ public class ArtificialLinkImpl implements ArtificialLink {
 
 	@Override
 	public double getCapacity(double time) {
-		return 0;
+		return this.capacity;
 	}
 
 	@Override
@@ -109,12 +109,12 @@ public class ArtificialLinkImpl implements ArtificialLink {
 
 	@Override
 	public double getFlowCapacityPerSec() {
-		return 0;
+		return this.capacity / 3600.0;
 	}
 
 	@Override
 	public double getFlowCapacityPerSec(double time) {
-		return 0;
+		return this.capacity / 3600.0;
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class ArtificialLinkImpl implements ArtificialLink {
 
 	@Override
 	public double getFreespeed(double time) {
-		return 0;
+		return this.freespeed;
 	}
 
 	//
@@ -165,7 +165,8 @@ public class ArtificialLinkImpl implements ArtificialLink {
 
 	@Override
 	public boolean setToNode(Node node) {
-		throw new IllegalAccessError();
+		this.toNode = node;
+		return true;
 	}
 
 	@Override
@@ -175,9 +176,9 @@ public class ArtificialLinkImpl implements ArtificialLink {
 
 	@Override
 	public boolean setFromNode(Node node) {
-		throw new IllegalAccessError();
+		this.fromNode = node;
+		return true;
 	}
-
 
 	@Override
 	public double getLength() {

@@ -260,7 +260,7 @@ public class GtfsConverter {
 	}
 
 	protected TransitRouteStop createTransitRouteStop(StopTime stopTime, Trip trip, Map<Id<TransitStopFacility>, TransitStopFacility> stopFacilities) {
-		double arrivalOffset = Time.UNDEFINED_TIME, departureOffset = Time.UNDEFINED_TIME;
+		double arrivalOffset = Time.getUndefinedTime(), departureOffset = Time.getUndefinedTime();
 
 		int routeStartTime = trip.getStopTimes().first().getArrivalTime();
 		int firstSequencePos = trip.getStopTimes().first().getSequencePosition();

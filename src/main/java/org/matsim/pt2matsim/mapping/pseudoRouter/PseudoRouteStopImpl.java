@@ -68,8 +68,8 @@ public class PseudoRouteStopImpl implements PseudoRouteStop {
 		this.stopAreaId = routeStop.getStopFacility().getStopAreaId();
 
 		// route stop values
-		this.departureOffset = routeStop.getDepartureOffset();
-		this.arrivalOffset = routeStop.getArrivalOffset();
+		this.departureOffset = routeStop.getDepartureOffset().orElse(Double.NEGATIVE_INFINITY);
+		this.arrivalOffset = routeStop.getArrivalOffset().orElse(Double.NEGATIVE_INFINITY);
 		this.awaitDepartureTime = routeStop.isAwaitDepartureTime();
 
 		// link value

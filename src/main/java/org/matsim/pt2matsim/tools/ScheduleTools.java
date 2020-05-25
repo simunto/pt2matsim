@@ -599,7 +599,7 @@ public final class ScheduleTools {
 						lengthUpToCurrentStop += link.getLength();
 	
 						if(stop.getStopFacility().getLinkId().equals(link.getId())) {
-							double ttSchedule = stop.getArrivalOffset() - departTime;
+							double ttSchedule = stop.getArrivalOffset().seconds() - departTime;
 							double theoreticalMinSpeed = (lengthUpToCurrentStop / ttSchedule) * 1.02;
 	
 							for(Id<Link> linkId : linkIdsUpToCurrentStop) {
@@ -612,7 +612,7 @@ public final class ScheduleTools {
 							// reset
 							lengthUpToCurrentStop = 0;
 							linkIdsUpToCurrentStop = new ArrayList<>();
-							departTime = stop.getDepartureOffset();
+							departTime = stop.getDepartureOffset().orElse(Double.NEGATIVE_INFINITY);
 							if(stopsIterator.hasNext()) {
 								stop = stopsIterator.next();
 							}

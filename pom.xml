@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.matsim</groupId>
     <artifactId>pt2matsim</artifactId>
-    <version>19.11-m12-2020w15</version>
+    <version>19.11-m12-2020w21</version>
 
     <name>PT2MATSim</name>
     <description>Public Transport to MATSim</description>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>org.matsim</groupId>
             <artifactId>matsim</artifactId>
-            <version>12.0-2020w15-SNAPSHOT</version>
+            <version>12.0-2020w21-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

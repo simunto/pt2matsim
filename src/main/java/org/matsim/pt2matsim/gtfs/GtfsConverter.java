@@ -21,6 +21,7 @@ package org.matsim.pt2matsim.gtfs;
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Id;
 import org.matsim.core.utils.misc.Time;
+import org.matsim.pt.transitSchedule.TransitRouteStopImpl;
 import org.matsim.pt.transitSchedule.api.*;
 import org.matsim.pt2matsim.gtfs.lib.*;
 import org.matsim.pt2matsim.tools.GtfsTools;
@@ -260,7 +261,7 @@ public class GtfsConverter {
 	}
 
 	protected TransitRouteStop createTransitRouteStop(StopTime stopTime, Trip trip, Map<Id<TransitStopFacility>, TransitStopFacility> stopFacilities) {
-		double arrivalOffset = Time.getUndefinedTime(), departureOffset = Time.getUndefinedTime();
+		double arrivalOffset = Double.NEGATIVE_INFINITY, departureOffset = Double.NEGATIVE_INFINITY;
 
 		int routeStartTime = trip.getStopTimes().first().getArrivalTime();
 		int firstSequencePos = trip.getStopTimes().first().getSequencePosition();
@@ -279,8 +280,16 @@ public class GtfsConverter {
 
 		TransitStopFacility stopFacility = stopFacilities.get(createStopFacilityId(stopTime.getStop()));
 
-		TransitRouteStop newTransitRouteStop = this.scheduleFactory.createTransitRouteStop(stopFacility, arrivalOffset, departureOffset);
-		newTransitRouteStop.setAwaitDepartureTime(AWAIT_DEPARTURE_TIME_DEFAULT);
+		TransitRouteStop.Builder builder = new TransitRouteStopImpl.Builder();
+		builder.stop(stopFacility);
+		if (Double.isFinite(arrivalOffset)) {
+			builder.arrivalOffset(arrivalOffset);
+		}
+		if (Double.isFinite(departureOffset)) {
+			builder.departureOffset(departureOffset);
+		}
+		builder.awaitDepartureTime(AWAIT_DEPARTURE_TIME_DEFAULT);
+		TransitRouteStop newTransitRouteStop = builder.build();
 		return newTransitRouteStop;
 	}
 
